@@ -1,0 +1,379 @@
+* {
+  margin: 0;
+  font-family: "roboto";
+}
+body {
+  background-color: black;
+  color: yellow;
+  max-width: 100vw;
+}
+.grid-container {
+  display: grid;
+}
+header {
+  background-color: brown;
+  position: fixed;
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+ul {
+  display: flex;
+  list-style: none;
+  margin-right: 1vw;
+  color: yellow;
+}
+li {
+  padding-left: 10px;
+  list-style: none;
+}
+ul li a {
+  text-decoration: none;
+  color: inherit;
+}
+button a {
+  text-decoration: none;
+  color: inherit;
+}
+li:first-child {
+  padding-left: 0px;
+  margin-left: 0px;
+}
+li::after {
+  content: "I";
+  padding-left: 10px;
+}
+li:last-child::after {
+  content: none;
+}
+h1 {
+  font-family: "chewy";
+  color: yellow;
+  padding-left: 1vw;
+}
+h2 {
+  font-family: "chewy";
+  font-size: 2.5em;
+}
+h3 {
+  font-family: "chewy";
+}
+
+#hero {
+  background-image: url(/img/mumindalen.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding-top: 20%;
+  padding-bottom: 20%;
+  text-align: center;
+  line-height: 4em;
+}
+/* nedan är design för min hero-knapp. gjorde den först som en a inbakt i button, men slog fel i validatorn, så fick designa en knapp i css bäst jag kunde. */
+#hero a {
+  background-color: gray;
+  border: solid;
+  border-radius: 4px;
+  color: black;
+  text-decoration: none;
+}
+/* lite flipp då man hovrar */
+#hero a:hover {
+  color: yellow;
+}
+
+article {
+  background-color: black;
+  color: yellow;
+  text-align: center;
+}
+/* valde att köra float i dessa grid-containers. du gav rätt otydligt besked om vad som gällde med att mixa in float, men såhär placerat i ett tydligt barn kändes det rätt oproblematiskt. */
+.left > img {
+  width: 50%;
+  float: left;
+}
+.right > img {
+  width: 50%;
+  float: right;
+}
+.left1 > video {
+  width: 50%;
+  float: left;
+}
+.right1 > video {
+  width: 50%;
+  float: right;
+}
+article > img {
+  width: 50%;
+  float: left;
+}
+/* slog min blogsida i en ny grid. väckte tanken att jag kanske borde tänkt på hela sidan mer i sub-delar från början, hade nog kunnat leda till en roligare layout. */
+#blogsida {
+  display: grid;
+}
+section {
+  background-color: brown;
+  padding-bottom: 0;
+}
+p {
+  padding: 2px;
+}
+form {
+  padding: 5px;
+}
+/* generell style på footern */
+footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* här kommer min mobile-width som specificeras utöver mobile-first stylen. la till grejer som skulle va unika för varje brytpunkt, och lite för den andra listan (som i övrigt höll samma style som listan i headern) som behövde plockas bort i småskala */
+@media only screen and (max-width: 500px) {
+  #blogsida > h2 {
+    justify-self: center;
+  }
+  #blogsida > aside {
+    justify-self: center;
+  }
+  #ikoner > ul > li::after {
+    content: none;
+  }
+  footer {
+    margin: 20px 0 20px 0;
+  }
+  #copyright {
+    padding-left: 10px;
+  }
+  #uppdaterad {
+    padding-right: 10px;
+  }
+}
+/* här kommer tablet-view. I media queries härifrån definierar jag grid-template som basstruktur för layout. */
+@media only screen and (min-width: 501px) and (max-width: 800px) {
+  .grid-container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+  header {
+    grid-column: 1 / -1;
+  }
+  #hero {
+    grid-column: 1 / -1;
+  }
+  h1 {
+    font-size: 2.5rem;
+  }
+  section {
+    width: 50vw;
+  }
+  #about {
+    grid-column: 1 / -1;
+    margin-bottom: 10px;
+  }
+  #vision {
+    grid-column: 1;
+    grid-row: 3;
+  }
+  #slutord {
+    grid-column: 2;
+    grid-row: 3;
+  }
+  #blogsida {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-column: 1 / 3;
+  }
+  #blogsida > h2 {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    justify-self: center;
+    padding-bottom: 20px;
+  }
+  #blogsida > aside {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: center;
+    padding-bottom: 20px;
+  }
+  #blog1 {
+    grid-column: 1;
+    grid-row: 3;
+  }
+  #blog2 {
+    grid-column: 2;
+    grid-row: 3;
+  }
+  #blog3 {
+    grid-column: 1;
+    grid-row: 4;
+  }
+  form {
+    grid-row: 7;
+  }
+  footer {
+    grid-row: 8;
+    grid-column: 1 / 3;
+  }
+  #copyright {
+    padding-left: 20px;
+  }
+  #uppdaterad {
+    padding-right: 20px;
+  }
+}
+@media only screen and (min-width: 801px) and (max-width: 1200px) {
+  .grid-container {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    max-width: 100vw;
+  }
+  h1 {
+    font-size: 4rem;
+  }
+  #hero {
+    grid-column: 1 / span 3;
+  }
+  #about {
+    grid-row: 2;
+  }
+  #vision {
+    grid-row: 2;
+  }
+  #slutord {
+    grid-row: 2;
+  }
+  .right {
+    grid-row: 3;
+    grid-column: 1;
+  }
+  .left {
+    grid-row: 3;
+    grid-column: 2;
+  }
+  .left1 {
+    grid-row: 3;
+    grid-column: 3;
+  }
+  .right1 {
+    grid-row: 4;
+    grid-column: 2;
+  }
+  #blogsida {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-column: 1 / 4;
+  }
+  #blogsida > h2 {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    justify-self: center;
+    padding-bottom: 20px;
+  }
+  #blogsida > aside {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: center;
+    padding-bottom: 20px;
+  }
+  form {
+    grid-row: 6;
+    grid-column: 2;
+    justify-content: center;
+    text-align: center;
+  }
+  footer {
+    grid-row: 7;
+    grid-column: 1 / span 3;
+  }
+  #copyright {
+    padding-left: 30px;
+  }
+  #uppdaterad {
+    padding-right: 30px;
+  }
+}
+@media only screen and (min-width: 1201px) {
+  .gridcontainer {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  h1 {
+    font-size: 5rem;
+  }
+  #hero {
+    grid-column: 1 / 5;
+    grid-row: 1;
+  }
+  #hero > h2 {
+    font-size: 5rem;
+  }
+  #hero > h3 {
+    font-size: 2rem;
+  }
+
+  #about {
+    grid-column: 1 / 3;
+    grid-row: 2;
+  }
+  #vision {
+    grid-column: 3 / 4;
+    grid-row: 2;
+  }
+  #slutord {
+    grid-column: 4 / 5;
+    grid-row: 2;
+  }
+  .right {
+    grid-row: 3;
+    grid-column: 1;
+  }
+  .left {
+    grid-row: 3;
+    grid-column: 2;
+  }
+  .left1 {
+    grid-row: 3;
+    grid-column: 3;
+  }
+  .right1 {
+    grid-row: 3;
+    grid-column: 4;
+  }
+  #blogsida {
+    grid-column: 1 / 5;
+    grid-row: 5;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+  }
+  #blogsida > h2 {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    justify-self: center;
+    padding-bottom: 20px;
+  }
+  #blogsida > aside {
+    grid-column: 1 / 4;
+    grid-row: 2;
+    justify-self: center;
+    padding-bottom: 20px;
+  }
+  form {
+    grid-row: 6;
+    grid-column: 2 / span 2;
+    justify-self: center;
+    text-align: center;
+  }
+  footer {
+    grid-row: 7;
+    grid-column: 1 / 5;
+  }
+  #copyright {
+    padding: 40px;
+  }
+  #uppdaterad {
+    padding: 40px;
+  }
+}
